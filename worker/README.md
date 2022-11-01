@@ -2,7 +2,7 @@
 
 ### Worker Build
 * Build Status
-[!BuildStatus](http://localhost:8080/job/instavote/job/worker-build/)
+![GitHub branch checks state](https://img.shields.io/github/checks-status/cheloghm/example-voting-app/master)
 
 ### Worker Test
 * Build Status
