@@ -2,7 +2,7 @@
 
 ### Worker Build
 * Build Status
-[!BuildStatus](http://localhost:8080/job/instavote/job/worker-build/)(http://localhost:8080/job/instavote/job/worker-build/)
+[!BuildStatus](http://localhost:8080/job/instavote/job/worker-build/)
 
 ### Worker Test
 * Build Status
