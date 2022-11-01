@@ -7,3 +7,7 @@
 ### Worker Test
 * Build Status
 [![Build Status](http://localhost:8080/buildStatus/icon?job=instavote%2Fworker-test)](http://localhost:8080/job/instavote/job/worker-test/)
+
+### Worker Package
+* Build Status
+[![Build Status](http://localhost:8080/buildStatus/icon?job=instavote%2Fworker-package)](http://localhost:8080/job/instavote/job/worker-package/)
