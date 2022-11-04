@@ -4,6 +4,7 @@ pipeline{
 
     tools{
         nodejs 'NodeJS 8.9.0'
+        args '-v $HOME/.m2:/root/.m2'
     }
 
     stages{
