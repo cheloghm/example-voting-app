@@ -1,9 +1,10 @@
 pipeline{
     
-    agent any
-
-    tools{
-        maven 'Maven 3.8.6'
+    agent{
+        docker{
+            image: 'maven:3.8.6'
+            args: '-v $HOME/.m2/root/.m2'
+        }
     }
 
     stages{
