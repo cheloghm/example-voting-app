@@ -1,6 +1,9 @@
 pipeline {
+
   agent none
+  
   stages {
+
     stage('worker build') {
       agent {
         docker {
@@ -75,7 +78,7 @@ pipeline {
           docker.withRegistry('https://index.docker.io/v1/', 'dockerlogin'){
             def workerImage = docker.build("cheloghm/worker:v${env.BUILD_ID}", "./worker")
             workerImage.push()
-            workerImage.push("latest")
+            workerImage.push("${env.BRANCH_NAME}")
           }
         }
 
@@ -135,7 +138,7 @@ pipeline {
           docker.withRegistry('https://index.docker.io/v1/', 'dockerlogin'){
             def voteImage = docker.build("cheloghm/vote:v${env.BUILD_ID}", "./vote")
             voteImage.push()
-            voteImage.push("latest")
+            voteImage.push("${env.BRANCH_NAME}")
           }
         }
 
@@ -193,7 +196,7 @@ pipeline {
           docker.withRegistry('https://index.docker.io/v1/', 'dockerlogin'){
             def resultImage = docker.build("cheloghm/result:v${env.BUILD_ID}", "./result")
             resultImage.push()
-            resultImage.push("latest")
+            resultImage.push("${env.BRANCH_NAME}")
           }
         }
 
