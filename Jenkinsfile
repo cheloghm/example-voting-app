@@ -7,7 +7,7 @@ pipeline {
     stage('worker build') {
       agent {
         docker {
-          image 'maven:3.8.6'
+          image 'maven:3.6.1-jdk-8-alpine'
           args '-v $HOME/.m2/root/.m2'
         }
 
@@ -27,7 +27,7 @@ pipeline {
     stage('worker test') {
       agent {
         docker {
-          image 'maven:3.8.6'
+          image 'maven:3.6.1-jdk-8-alpine'
           args '-v $HOME/.m2/root/.m2'
         }
 
@@ -47,7 +47,7 @@ pipeline {
     stage('worker package') {
       agent {
         docker {
-          image 'maven:3.8.6'
+          image 'maven:3.6.1-jdk-8-alpine'
           args '-v $HOME/.m2/root/.m2'
         }
 
@@ -58,9 +58,9 @@ pipeline {
       }
       steps {
         echo 'Packaging worker app'
-        dir(path: 'worker') {
+        dir('worker') {
           sh 'mvn package -DskipTests'
-          archiveArtifacts(artifacts: '**/target/*.jar', fingerprint: true)
+          archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
         }
 
       }
@@ -98,7 +98,7 @@ pipeline {
       }
       steps {
         echo 'Compiling vote app'
-        dir(path: 'vote') {
+        dir('vote') {
           sh 'pip install -r requirements.txt'
         }
 
@@ -118,7 +118,7 @@ pipeline {
       }
       steps {
         echo 'Running unit Tests on vote app'
-        dir(path: 'vote') {
+        dir('vote') {
           sh 'pip install -r requirements.txt'
           sh 'nosetests -v'
         }
@@ -148,7 +148,7 @@ pipeline {
     stage('result build') {
       agent {
         docker {
-          image 'NodeJS 8.9.0'
+          image 'node:8.16.0-alpine'
         }
 
       }
@@ -157,7 +157,7 @@ pipeline {
       }
       steps {
         echo 'Compiling result app'
-        dir(path: 'result') {
+        dir('result') {
           sh 'npm install'
         }
 
@@ -167,7 +167,7 @@ pipeline {
     stage('result test') {
       agent {
         docker {
-          image 'NodeJS 8.9.0'
+          image 'node:8.16.0-alpine'
         }
 
       }
