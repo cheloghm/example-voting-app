@@ -1,4 +1,3 @@
-
 version: "3.8"
 
 volumes:
@@ -11,6 +10,7 @@ networks:
 services:
   vote:
     image: cheloghm/vote:latest
+    build: ./vote
     ports:
       - 5002:80
     depends_on:
@@ -34,6 +34,7 @@ services:
 
   result:
     image: cheloghm/result:latest
+    build: ./vote
     ports:
       - 5003:4000
     depends_on:
@@ -43,6 +44,7 @@ services:
 
   worker:
     image: cheloghm/worker:latest
+    build: ./vote
     depends_on:
       - redis
       - db
