@@ -58,9 +58,9 @@ pipeline {
       }
       steps {
         echo 'Packaging worker app'
-        dir(path: 'worker') {
+        dir('worker') {
           sh 'mvn package -DskipTests'
-          archiveArtifacts(artifacts: '**/target/*.jar', fingerprint: true)
+          archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
         }
 
       }
@@ -98,7 +98,7 @@ pipeline {
       }
       steps {
         echo 'Compiling vote app'
-        dir(path: 'vote') {
+        dir('vote') {
           sh 'pip install -r requirements.txt'
         }
 
@@ -118,7 +118,7 @@ pipeline {
       }
       steps {
         echo 'Running unit Tests on vote app'
-        dir(path: 'vote') {
+        dir('vote') {
           sh 'pip install -r requirements.txt'
           sh 'nosetests -v'
         }
@@ -157,7 +157,7 @@ pipeline {
       }
       steps {
         echo 'Compiling result app'
-        dir(path: 'result') {
+        dir('result') {
           sh 'npm install'
         }
 
