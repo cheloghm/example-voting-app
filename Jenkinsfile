@@ -130,7 +130,7 @@ pipeline{
         stage('result build'){
             agent{
                 docker{
-                    nodejs 'NodeJS 8.9.0'
+                    image 'NodeJS 8.9.0'
                 }
             }
             when{
@@ -146,7 +146,7 @@ pipeline{
         stage('result test'){
             agent{
                 docker{
-                    nodejs 'NodeJS 8.9.0'
+                    image 'NodeJS 8.9.0'
                 }
             }
             when{
