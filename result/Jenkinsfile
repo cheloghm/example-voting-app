@@ -6,7 +6,7 @@ pipeline{
         stage('build'){
             agent{
                 docker{
-                    nodejs 'NodeJS 8.9.0'
+                    image 'node:8.16.0-alpine'
                 }
             }
             when{
@@ -22,7 +22,7 @@ pipeline{
         stage('test'){
             agent{
                 docker{
-                    nodejs 'NodeJS 8.9.0'
+                    image 'node:8.16.0-alpine'
                 }
             }
             when{
