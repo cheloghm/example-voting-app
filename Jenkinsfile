@@ -7,7 +7,7 @@ pipeline {
     stage('worker build') {
       agent {
         docker {
-          image 'maven:3.8.6'
+          image 'maven:3.6.1-jdk-8-alpine'
           args '-v $HOME/.m2/root/.m2'
         }
 
@@ -27,7 +27,7 @@ pipeline {
     stage('worker test') {
       agent {
         docker {
-          image 'maven:3.8.6'
+          image 'maven:3.6.1-jdk-8-alpine'
           args '-v $HOME/.m2/root/.m2'
         }
 
@@ -47,7 +47,7 @@ pipeline {
     stage('worker package') {
       agent {
         docker {
-          image 'maven:3.8.6'
+          image 'maven:3.6.1-jdk-8-alpine'
           args '-v $HOME/.m2/root/.m2'
         }
 
@@ -148,7 +148,7 @@ pipeline {
     stage('result build') {
       agent {
         docker {
-          image 'NodeJS 8.9.0'
+          image 'node:8.16.0-alpine'
         }
 
       }
@@ -167,7 +167,7 @@ pipeline {
     stage('result test') {
       agent {
         docker {
-          image 'NodeJS 8.9.0'
+          image 'node:8.16.0-alpine'
         }
 
       }
