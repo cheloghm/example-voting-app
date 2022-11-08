@@ -1,9 +1,6 @@
 pipeline {
-
   agent none
-  
   stages {
-
     stage('worker build') {
       agent {
         docker {
@@ -58,9 +55,9 @@ pipeline {
       }
       steps {
         echo 'Packaging worker app'
-        dir('worker') {
+        dir(path: 'worker') {
           sh 'mvn package -DskipTests'
-          archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
+          archiveArtifacts(artifacts: '**/target/*.jar', fingerprint: true)
         }
 
       }
@@ -98,7 +95,7 @@ pipeline {
       }
       steps {
         echo 'Compiling vote app'
-        dir('vote') {
+        dir(path: 'vote') {
           sh 'pip install -r requirements.txt'
         }
 
@@ -118,7 +115,7 @@ pipeline {
       }
       steps {
         echo 'Running unit Tests on vote app'
-        dir('vote') {
+        dir(path: 'vote') {
           sh 'pip install -r requirements.txt'
           sh 'nosetests -v'
         }
@@ -157,7 +154,7 @@ pipeline {
       }
       steps {
         echo 'Compiling result app'
-        dir('result') {
+        dir(path: 'result') {
           sh 'npm install'
         }
 
@@ -200,6 +197,16 @@ pipeline {
           }
         }
 
+      }
+    }
+
+    stage('Deploy to Dev') {
+      agent any
+      when {
+        branch 'master'
+      }
+      steps {
+        sh 'docker-compose up -d'
       }
     }
 
